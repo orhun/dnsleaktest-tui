@@ -1,6 +1,12 @@
 [package]
 name = "dnsleaktest-tui"
 version = "0.1.0"
+description = "A proof-of-concept TUI for testing DNS leaks & running traceroute"
+authors = ["Orhun Parmaksız <orhunparmaksiz@gmail.com>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/orhun/dnsleaktest-tui"
+repository = "https://github.com/orhun/dnsleaktest-tui"
 edition = "2021"
 
 [dependencies]
