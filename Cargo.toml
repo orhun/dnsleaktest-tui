@@ -1,0 +1,13 @@
+[package]
+name = "dnsleaktest-tui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+color-eyre = "0.6.3"
+country-emoji = "0.2.0"
+itertools = "0.13.0"
+ratatui = "0.28.1"
+serde = { version = "1.0.210", features = ["derive"] }
+trippy = { version = "0.11.0", default-features = false, features = ["core", "dns"] }
+ureq = { version = "2.10.1", features = ["json"] }
