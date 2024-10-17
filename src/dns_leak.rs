@@ -14,21 +14,15 @@ pub struct DnsData {
 }
 
 pub fn test_dns_leak() -> color_eyre::Result<Vec<DnsData>> {
-    let agent = ureq::Agent::new();
-    let id = agent
-        .get(&format!("https://{API_URL}/id"))
-        .call()?
-        .into_string()?;
+    let id = reqwest::blocking::get(&format!("https://{API_URL}/id"))?.text()?;
 
     let attempts = 0..10;
     attempts.into_iter().for_each(|i| {
-        let _ = agent.get(&format!("https://{i}.{id}.{API_URL}")).call();
+        let _ = reqwest::blocking::get(&format!("https://{i}.{id}.{API_URL}")).ok();
     });
 
-    let mut data: Vec<DnsData> = agent
-        .get(&format!("https://{API_URL}/dnsleak/test/{id}?json"))
-        .call()?
-        .into_json()?;
+    let mut data: Vec<DnsData> =
+        reqwest::blocking::get(&format!("https://{API_URL}/dnsleak/test/{id}?json"))?.json()?;
 
     data.iter_mut().for_each(|result| {
         result.country_name = format!(

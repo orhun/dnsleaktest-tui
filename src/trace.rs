@@ -78,6 +78,7 @@ pub fn traceroute(hostname: &str) -> color_eyre::Result<TraceData> {
             *addr
         }
     };
+
     let tracer = Builder::new(addr)
         .interface(interface)
         .source_addr(src_addr)
@@ -93,10 +94,12 @@ pub fn traceroute(hostname: &str) -> color_eyre::Result<TraceData> {
         .max_round_duration(Duration::from_millis(pausemecs))
         .build()?;
     tracer.run()?;
+
     let snapshot = &tracer.snapshot();
     if let Some(err) = snapshot.error() {
         return Err(color_eyre::eyre::eyre!("error: {err}"));
     }
+
     let mut hops = Vec::new();
     for hop in snapshot.hops() {
         let ttl = hop.ttl();
