@@ -48,7 +48,14 @@ pub fn run_tui(dns_data: Vec<DnsData>, trace_data: TraceData) -> color_eyre::Res
                         ip.asn.green(),
                         "]".into(),
                     ]))
-                    .block(Block::bordered().title("| Your IP |")),
+                    .block(
+                        Block::bordered().title("| Your IP |").title_top(
+                            ratatui::text::Span::from("dnsleaktest-tui")
+                                .yellow()
+                                .bold()
+                                .into_right_aligned_line(),
+                        ),
+                    ),
                     chunks[0],
                 );
             }
