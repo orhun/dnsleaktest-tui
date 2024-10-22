@@ -12,8 +12,9 @@ edition = "2021"
 [dependencies]
 color-eyre = "0.6.3"
 country-emoji = "0.2.0"
+clap = { version = "4.5.20", features = ["derive"] }
 itertools = "0.13.0"
 ratatui = "0.28.1"
+reqwest = { version = "0.12.8", features = ["blocking", "json"] }
 serde = { version = "1.0.210", features = ["derive"] }
 trippy = { version = "0.11.0", default-features = false, features = ["core", "dns"] }
-ureq = { version = "2.10.1", features = ["json"] }
