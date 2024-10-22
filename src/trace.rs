@@ -37,11 +37,11 @@ impl Hop {
     }
 
     pub fn host(&self) -> String {
-        self.host.as_deref().unwrap_or_else(|| "*").to_string()
+        self.host.as_deref().unwrap_or("*").to_string()
     }
 
     pub fn address(&self) -> String {
-        self.address.as_deref().unwrap_or_else(|| "*").to_string()
+        self.address.as_deref().unwrap_or("*").to_string()
     }
 
     pub fn samples(&self) -> String {
